@@ -1,0 +1,4 @@
+--require mocha-test-hook.js
+--reporter spec
+--watch-extensions ts
+src/**/*.spec.ts

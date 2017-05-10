@@ -1,0 +1,30 @@
+{
+  "name": "mocha2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha --opts mocha.opts",
+    "test:w": "./node_modules/.bin/mocha --opts mocha.opts --watch",
+    "test:dev": "./node_modules/.bin/mocha-typescript-watch --opts mocha.opts",
+    "build": "./node_modules/.bin/tsc -p .",
+    "build:w": "./node_modules/.bin/tsc -p . -w",
+    "generate": "npm run build && npm test",
+    "generate:w": "./node_modules/.bin/concurrently \"npm run build:w\" \"npm run test:w\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/chai": "^3.5.2",
+    "@types/mocha": "^2.2.41",
+    "chai": "^3.5.0",
+    "concurrently": "^3.4.0",
+    "mocha": "^3.3.0",
+    "mocha-typescript": "^1.1.2",
+    "ts-node": "^3.0.4"
+  },
+  "dependencies": {
+    "jsw-logger": "^1.2.3"
+  }
+}
