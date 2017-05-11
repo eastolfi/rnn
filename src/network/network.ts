@@ -1,12 +1,15 @@
+import { JSWLogger, LogMethod } from "jsw-logger";
+
 import { Layer } from "./layer";
 
 class Network {
-    // inputLayer: Layer;
-    // outputLayer: Layer;
+    logger: JSWLogger;
     numInputs: number;
     layers: Array<Layer> = [];
     
     constructor(inputs: number, outputs: number, layers: number, neuronsPerLayer: number) {
+        this.logger = JSWLogger.instance;
+        
         this.numInputs = inputs;
         
         if (layers === 0) {
@@ -26,16 +29,22 @@ class Network {
         }
     }
     
+    @LogMethod
     run(inputs: Array<number>): Array<number> {
         if (!inputs || inputs.length !== this.numInputs) this.logger.throw("Wrong number of inputs");
         
-        let outputs = [];
+        // Run the first layer with the inputs
+        let layerInputs = inputs;
+        let output = null;
         
         for (let layer of this.layers) {
-            outputs.push(layer.getOutput(inputs));
+            output = layer.getOutput(layerInputs);
+            
+            // Use the last output as the new layer input
+            layerInputs = output;
         }
         
-        return outputs;
+        return output;
     }
 }
 

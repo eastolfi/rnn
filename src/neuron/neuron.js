@@ -5,7 +5,8 @@ var utils_1 = require("../utils");
 var Neuron = (function () {
     function Neuron(inputs) {
         this.weights = [];
-        this.logger = jsw_logger_1.JSWLogger.getInstance({ level: 6 });
+        // this.logger = JSWLogger.getInstance({ level: 6 });
+        this.logger = jsw_logger_1.JSWLogger.instance;
         this.logger.debug("Creating neuron with " + inputs + " inputs");
         this.inputs = inputs;
         // Add one weight for the bias
